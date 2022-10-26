@@ -1,0 +1,218 @@
+> yanıtlar<-read.table("yanıtlarikili.txt",header=T)
+> rt<-read.table("RT.txt",header=T)
+> demografik<-read.table("demografik.txt",header=T)
+> tsüre<-demografik[,10]
+> deneme<-read.table("deneme.txt",header=T)
+> hız<-read.table("hız.txt",header=T)
+> yetenek<-read.table("yetenek.txt",header=T)
+> akb<-read.table("AKB.txt",header=T)
+> dkb<-read.table("DKB.txt",header=T)
+> ekb<-read.table("EKB.txt",header=T)
+> g<-read.table("G.txt",header=T)
+> ht<-read.table("Ht.txt",header=T)
+> lz<-read.table("lz.txt",header=T)
+> lzs<-read.table("lzstar.txt",header=T)
+> ncı<-read.table("NCI.txt",header=T)
+> pbs<-read.table("PBS.txt",header=T)
+> csato<-read.table("CSato.txt",header=T)
+> cstar<-read.table("CStar.txt",header=T)
+> u3<-read.table("U3.txt",header=T)
+> zu3<-read.table("ZU3.txt",header=T)
+> lt<-read.table("ChiRT.txt",header=T)
+> flagged<-demografik[,3]
+> basari<-read.table("basari.txt",header=T)
+> charteksi<-read.table("charteksi.txt",header=T)
+> chartartı<-read.table("chartartı.txt",header=T)
+> p<-read.table("p.txt",header=T)
+> ceksi<-read.table("ceksi.txt",header=T)
+> cartı<-read.table("cartı.txt",header=T)
+> deneme<-read.table("deneme.txt",header=T)
+> 
+> 
+> 
+> büyükveri<-cbind(yanıtlar,rt)
+> büyükveri<-cbind(büyükveri,tsüre)
+> büyükveri<-cbind(büyükveri,deneme)
+> basari<-read.table("basari.txt",header=T)
+> 
+> büyükveri<-cbind(büyükveri,basari)
+> büyükveri<-cbind(büyükveri,hız)
+> büyükveri<-cbind(büyükveri,yetenek)
+> 
+> büyükveri<-edit(büyükveri)
+> büyükveri<-cbind(büyükveri,akb)
+> büyükveri<-cbind(büyükveri,dkb)
+> büyükveri<-cbind(büyükveri,ekb)
+> büyükveri<-cbind(büyükveri,g)
+> büyükveri<-cbind(büyükveri,ht)
+> büyükveri<-cbind(büyükveri,lz)
+> büyükveri<-cbind(büyükveri,lzs)
+> büyükveri<-cbind(büyükveri,ncı)
+> büyükveri<-cbind(büyükveri,pbs)
+> büyükveri<-cbind(büyükveri,csato)
+> büyükveri<-cbind(büyükveri,cstar)
+> büyükveri<-cbind(büyükveri,u3)
+> büyükveri<-cbind(büyükveri,zu3)
+> büyükveri<-cbind(büyükveri,charteksi)
+>  büyükveri<-edit(büyükveri)
+> büyükveri<-cbind(büyükveri,chartartı)
+> büyükveri<-cbind(büyükveri,p)
+>  büyükveri<-edit(büyükveri)
+> büyükveri<-cbind(büyükveri,ceksi)
+>  büyükveri<-edit(büyükveri)
+> büyükveri<-cbind(büyükveri,cartı)
+>  büyükveri<-edit(büyükveri)
+> büyükveri<-cbind(büyükveri,lt)
+> büyükveri<-cbind(büyükveri,flagged)
+>  büyükveri<-edit(büyükveri)
+> ncol(büyükveri)
+[1] 872
+
+> library(caret)
+> ölcekleme<-function(x,na.rm=T){
++     return((x-min(x))/(max(x)-min(x)))
++ }
+> 
+> büyükveri$flagged = factor(büyükveri$flagged, levels = c(0, 1))
+> büyükveri[-872]<-ölcekleme(büyükveri[-872])
+> control <- rfeControl(functions=rfFuncs, method="cv", number=2)
+> results <- rfe(büyükveri[,1:871], büyükveri$flagged, sizes=c(1:871), rfeControl=control)
+> predictors(results)
+ [1] "hız"        "tsüre"      "Item.167.1" "Item.168.1" "idur.170"   "idur.15"    "idur.114"   "Item.170.1" "idur.77"    "col23"      "idur.67"    "idur.62"   
+[13] "basari"     "lt"         "idur.78"    "idur.88"    "idur.30"    "idur.81"    "idur.111"   "idur.35"    "idur.13"   
+
+> d1<-rt[,170]
+> d2<-rt[,15]
+> d3<-rt[,114]
+> d4<-rt[,77]
+> d5<-rt[,67]
+> d6<-rt[,62]
+> d7<-rt[,78]
+> d8<-rt[,88]
+> d9<-rt[,30]
+> d10<-rt[,81]
+> d11<-rt[,111]
+> d12<-rt[,35]
+> d13<-rt[,13]
+> d14<-p[,23]
+> d15<-chartartı[,170]
+> d16<-chartartı[,168]
+> d17<-chartartı[,167]
+> 
+> veri<-cbind(d1,d2)
+> veri<-cbind(veri,d3)
+> veri<-cbind(veri,d4)
+> veri<-cbind(veri,d5)
+> veri<-cbind(veri,d6)
+> veri<-cbind(veri,d7)
+> veri<-cbind(veri,d8)
+> veri<-cbind(veri,d9)
+> veri<-cbind(veri,d10)
+> veri<-cbind(veri,d11)
+> veri<-cbind(veri,d12)
+> veri<-cbind(veri,d13)
+> veri<-cbind(veri,d14)
+> veri<-cbind(veri,d15)
+> veri<-cbind(veri,d16)
+> veri<-cbind(veri,d17)
+> veri<-cbind(veri,hız)
+> veri<-cbind(veri,tsüre)
+> veri<-cbind(veri,lt)
+> veri<-cbind(veri,basari)
+> veri<-cbind(veri,flagged)
+> veri<-edit(veri)
+> ncol(veri)
+[1] 22
+
+> ölcekleme<-function(x,na.rm=T){
++ return((x-min(x))/(max(x)-min(x)))
++ }
+> veri$flagged = factor(veri$flagged, levels = c(0, 1))
+> veri[-22]<-ölcekleme(veri[-22])
+> library(caTools)
+> set.seed(123)
+> split = sample.split(veri$flagged, SplitRatio = 0.70)
+> egitimset = subset(veri, split == TRUE)
+> testset = subset(veri, split == FALSE)
+
+> library(randomForest)
+> classifier = randomForest(x = egitimset[-22],
++ y = egitimset$flagged,
++ ntree = 1000)
+> y_pred = predict(classifier, newdata = testset[-22])
+> cm = table(testset[, 22], y_pred)
+> cm
+   y_pred
+      0   1
+  0 475   2
+  1   8   6
+> 
+> classifier = naiveBayes(x = egitimset[-22],
++ y = egitimset$flagged)
+> y_pred = predict(classifier, newdata = testset[-22])
+> cm = table(testset[, 22], y_pred)
+> cm
+   y_pred
+      0   1
+  0 467  10
+  1   6   8
+> library(class)
+> y_pred = knn(train = egitimset[,-22],
++ test = testset[,-22],
++ cl = egitimset[,22],
++ k = 5)
+> cm = table(testset[, 22], y_pred)
+> cm
+   y_pred
+      0   1
+  0 476   1
+  1   8   6
+
+
+
+
+> library(cluster)
+> library(factoextra)
+> library(tidyverse)
+
+> distance<-get_dist(veri[,1:21])
+> k<-kmeans(distance,2,nstart=25)
+> cm=table(veri$flagged,k$cluster)
+> cm
+   
+       1    2
+  0  393 1197
+  1   21   25
+
+
+
+> library(ClusterR)
+> veri<-veri[,-22]
+> veri<-center_scale(veri, mean_center = TRUE, sd_scale = TRUE)
+> gmm = GMM(veri,2 , "eucl_dist", "random_spread", 100000, 50000)
+> pr = predict_GMM(veri, gmm$centroids, gmm$covariance_matrices, gmm$weights)
+> cm = table(flagged, pr$cluster_labels)
+> cm
+       
+flagged   0   1
+      0 498 1092
+      1  24  22
+
+> library(cluster)
+> library(factoextra)
+> library(tidyverse)
+> library(randomForest)
+> rf.fit <- randomForest(x = veri, y = NULL, ntree = 10000, proximity = TRUE, oob.prox = TRUE)
+> hclust.rf <- hclust(as.dist(1-rf.fit$proximity), method = "average")
+> rf.cluster = cutree(hclust.rf, k=2)
+> veriseti.pc <- prcomp(veri, center = FALSE, scale. = FALSE)$x %>% as.data.frame()
+> veriseti.pc$rf.clusters <- rf.cluster
+> table(rf.cluster,flagged)
+          flagged
+rf.cluster   0    1
+         1 568   20
+         2 1022  26
+		 
+
+
+

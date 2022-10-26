@@ -1,0 +1,73 @@
+
+1) Tek Bir Yönteme Odaklanma
+
+
+             .01             .05 
+			 
+l*z        2/99/98         9/93/90
+ZU3       11/99/96         11/95/93 
+CUSUM      2/99/97         7/97/94
+M4        17/93/91         46/77/76
+K         11/99/97         20/93/91
+lt(chi)       -            35/87/86
+lt(ırt)       -            33/90/88  
+
+
+2) Çoklu Önlem Kullanımı
+
+ZU3+K          30/88/86
+CUSUM+M4       50/76/75
+l*z+lt(ırt)    41/83/83
+ZU3+lt(chi)    41/83/82
+lt(ırt)+K      41/83/83    
+lt(chi)+M4     63/70/68
+
+ZU3+lt(chi)+K       50/77/76
+CUSUM+lt(chi)+K     43/78/77
+l*z+lt(chi)+K       50/74/75
+ZU3+lt(chi)+M4      70/64/65
+CUSUM+lt(ırt)+M4    65/68/67
+
+
+3) Süreç Yaklaşımı
+
+model1    48/88/87
+model2    46/85/84
+model3    50/83/82
+model4    48/80/79
+
+
+
+model1 : sınav öncesi için lt(ırt),
+		 esnası için K (.01 kesme seviyesinde)
+		 sonrası için ... (EDI,GBT...)
+		 devriyeler ZU3 ve CUSUM (.01 kesme düzeyinde)
+
+
+model2 : möb için lt(chi),
+         esnası K (.01),
+		 sonrası ..
+		 devriyeler ZU3 ve CUSUM (.01)
+		 
+model3 : möb için lt(ırt),
+         esnası için M4 (.01),
+		 sonrası...
+		 devriyeler ZU3 ve CUSUM
+		 
+model4 : möb lt(chi),
+		 esnası M4,
+		 sonrası...
+		 devriyeler ZU3 ve CUSUM
+		 
+
+
+4) VERİ MADENCİLİĞİ YÖNTEMLERİNİN KULLANIMI
+
+  I)Denetimsiz Yöntemler              II)Denetimli Yöntemler
+  
+    K-means   50/74/74                  Knn          36/99/99 --- 43/99/99 
+	GFM       56/65/65                  NaiveBayes   64/99/99 
+	RFxHC     41/67/66                  RandomForest 57/99/99
+	
+	
+	Birleşik / Toplu Değerleme (denetimli yöntemler için)
