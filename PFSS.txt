@@ -1,0 +1,531 @@
+
+
+> library(PerFit)
+
+ 
+> yanıtlarikili<-read.table("yanıtlarikili.txt",header=T)
+
+> set.seed(123)
+ 
+> Aout<-A.KB(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Acut<-cutoff(Aout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> Aflag<-flagged.resp(Aout,cutoff.obj=Acut,scores=F)
+
+
+
+> Dout<-D.KB(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Dcut<-cutoff(Dout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> Dflag<-flagged.resp(Dout,cutoff.obj=Dcut,scores=F)
+
+ 
+> Eout<-E.KB(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Ecut<-cutoff(Eout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> Eflag<-flagged.resp(Eout,cutoff.obj=Ecut,scores=F)
+
+
+ 
+> Gout<-G(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Gcut<-cutoff(Gout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> Gflag<-flagged.resp(Gout,cutoff.obj=Gcut,scores=F)
+
+
+ 
+> Htout<-Ht(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Htcut<-cutoff(Htout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> Htflag<-flagged.resp(Htout,cutoff.obj=Htcut,scores=F)
+
+
+ 
+> lzout<-lz(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> lzcut<-cutoff(lzout,Blvl = 0.01, Breps = 10000)
+> lzflag<-flagged.resp(lzout,cutoff.obj=lzcut,scores=F)
+> 
+> 
+> lzstarout<-lzstar(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> lzstarcut<-cutoff(lzstarout,Blvl = 0.01, Breps = 10000)
+> lzstarflag<-flagged.resp(lzstarout,cutoff.obj=lzstarcut,scores=F)
+
+
+ 
+> NCIout<-NCI(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> NCIcut<-cutoff(NCIout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> NCIflag<-flagged.resp(NCIout,cutoff.obj=NCIcut,scores=F)
+
+
+ 
+> PBSout<-r.pbis(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> PBScut<-cutoff(PBSout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> PBSflag<-flagged.resp(PBSout,cutoff.obj=PBScut,scores=F)
+
+
+ 
+> CSatoout<-C.Sato(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> CSatocut<-cutoff(CSatoout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> CSatoflag<-flagged.resp(CSatoout,cutoff.obj=CSatocut,scores=F)
+
+
+ 
+> CStarout<-Cstar(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> CStarcut<-cutoff(CStarout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> CStarflag<-flagged.resp(CStarout,cutoff.obj=CStarcut,scores=F)
+
+
+ 
+> U3out<-U3(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> U3cut<-cutoff(U3out,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> U3flag<-flagged.resp(U3out,cutoff.obj=U3cut,scores=F)
+
+
+ 
+> ZU3out<-ZU3(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> ZU3cut<-cutoff(ZU3out,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.01, Breps = 10000)
+> ZU3flag<-flagged.resp(ZU3out,cutoff.obj=ZU3cut,scores=F)
+
+
+ 
+> library(PsyControl)
+> CUSUMout<-cusum(dat=yanıtlarikili)
+> CUSUMcut<-cusum.cutoff(CUSUMout,upp=.995,low=.005,Breps=1000)
+> CUSUMflag<-cusum.flag(CUSUMout,CUSUMcut)
+ 
+
+
+ 
+> Acıktı<-Aflag$PFSscores[,1]
+> Dcıktı<-Dflag$PFSscores[,1]
+> Ecıktı<-Eflag$PFSscores[,1]
+> Gcıktı<-Gflag$PFSscores[,1]
+> Htcıktı<-Htflag$PFSscores[,1]
+> lzcıktı<-lzflag$PFSscores[,1]
+> lzstarcıktı<-lzstarflag$PFSscores[,1]
+> NCIcıktı<-NCIflag$PFSscores[,1]
+> PBScıktı<-PBSflag$PFSscores[,1]
+> CSatocıktı<-CSatoflag$PFSscores[,1]
+> CStarcıktı<-CStarflag$PFSscores[,1]
+> U3cıktı<-U3flag$PFSscores[,1]
+> ZU3cıktı<-ZU3flag$PFSscores[,1]
+> 
+> 
+> kopyacılar<-c(2,3,4,5,11,103,104,141,149,191,219,226,248,251,271,292,415,452,453,478,494,498,505,
+				524,623,624,639,645,687,892,903,919,921,923,983,1176,1267,1307,1356,1358,1413,1426,
+				1432,1450,1585,1620)
+ 
+ 
+> length(Acıktı)
+> intersect(Acıktı,kopyacılar)
+> length(Dcıktı)
+> intersect(Dcıktı,kopyacılar)
+> length(Ecıktı)
+> intersect(Ecıktı,kopyacılar)
+> length(Gcıktı)
+> intersect(Gcıktı,kopyacılar)
+> length(Htcıktı)
+> intersect(Htcıktı,kopyacılar)
+> length(lzcıktı)
+> intersect(lzcıktı,kopyacılar)
+> length(lzstarcıktı)
+> intersect(lzstarcıktı,kopyacılar)
+> length(NCIcıktı)
+> intersect(NCIcıktı,kopyacılar)
+> length(PBScıktı)
+> intersect(PBScıktı,kopyacılar)
+> length(CSatocıktı)
+> intersect(CSatocıktı,kopyacılar)
+> length(CStarcıktı)
+> intersect(CStarcıktı,kopyacılar)
+> length(U3cıktı)
+> intersect(U3cıktı,kopyacılar)
+> length(ZU3cıktı)
+> intersect(ZU3cıktı,kopyacılar)
+
+
+
+> length(Acıktı)
+[1] 8
+> intersect(Acıktı,kopyacılar)
+[1]  2  3  4  5 11
+> length(Dcıktı)
+[1] 23
+> intersect(Dcıktı,kopyacılar)
+numeric(0)
+> length(Ecıktı)
+[1] 24
+> intersect(Ecıktı,kopyacılar)
+[1] 2 3 4 5 11
+> length(Gcıktı)
+[1] 15
+> intersect(Gcıktı,kopyacılar)
+numeric(0)
+> length(Htcıktı)
+[1] 27
+> intersect(Htcıktı,kopyacılar)
+numeric(0)
+> length(lzcıktı)
+[1] 30
+> intersect(lzcıktı,kopyacılar)
+[1] 3 5
+> length(lzstarcıktı)
+[1] 35
+> intersect(lzstarcıktı,kopyacılar)
+[1] 3
+> length(NCIcıktı)
+[1] 29
+> intersect(NCIcıktı,kopyacılar)
+[1] 2 3 4
+> length(PBScıktı)
+[1] 23
+> intersect(PBScıktı,kopyacılar)
+[1] 2 3 4
+> length(CSatocıktı)
+[1] 17
+> intersect(CSatocıktı,kopyacılar)
+[1] 2 3 4
+> length(CStarcıktı)
+[1] 11
+> intersect(CStarcıktı,kopyacılar)
+numeric(0)
+> length(U3cıktı)
+[1] 10
+> intersect(U3cıktı,kopyacılar)
+[1] 2 4
+> length(ZU3cıktı)
+[1] 21
+> intersect(ZU3cıktı,kopyacılar)
+[1]  2  3  4  5 11
+
+
+
+> CUSUMflag
+
+CUSUMcıktı<-c(1,14,17,49,126,251,339,410,1027,1496)
+
+> length(CUSUMcıktı)
+[1] 10
+> intersect(CUSUMcıktı,kopyacılar)
+[1] 251
+
+#######################################################################################################################
+
+.05 cutoff değeri için;
+
+> library(PerFit)
+> set.seed(123)
+> yanıtlarikili<-read.table("yanıtlarikili.txt",header=T)
+
+
+> Aout<-A.KB(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Acut<-cutoff(Aout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> Aflag<-flagged.resp(Aout,cutoff.obj=Acut,scores=F)
+
+
+
+> Dout<-D.KB(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Dcut<-cutoff(Dout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> Dflag<-flagged.resp(Dout,cutoff.obj=Dcut,scores=F)
+
+ 
+> Eout<-E.KB(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Ecut<-cutoff(Eout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> Eflag<-flagged.resp(Eout,cutoff.obj=Ecut,scores=F)
+
+
+ 
+> Gout<-G(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Gcut<-cutoff(Gout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> Gflag<-flagged.resp(Gout,cutoff.obj=Gcut,scores=F)
+
+
+ 
+> Htout<-Ht(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> Htcut<-cutoff(Htout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> Htflag<-flagged.resp(Htout,cutoff.obj=Htcut,scores=F)
+
+
+ 
+> lzout<-lz(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> lzcut<-cutoff(lzout,Blvl = 0.05, Breps = 10000)
+> lzflag<-flagged.resp(lzout,cutoff.obj=lzcut,scores=F)
+> 
+> 
+> lzstarout<-lzstar(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> lzstarcut<-cutoff(lzstarout,Blvl = 0.05, Breps = 10000)
+> lzstarflag<-flagged.resp(lzstarout,cutoff.obj=lzstarcut,scores=F)
+
+
+ 
+> NCIout<-NCI(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> NCIcut<-cutoff(NCIout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> NCIflag<-flagged.resp(NCIout,cutoff.obj=NCIcut,scores=F)
+
+
+ 
+> PBSout<-r.pbis(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> PBScut<-cutoff(PBSout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> PBSflag<-flagged.resp(PBSout,cutoff.obj=PBScut,scores=F)
+
+
+ 
+> CSatoout<-C.Sato(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> CSatocut<-cutoff(CSatoout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> CSatoflag<-flagged.resp(CSatoout,cutoff.obj=CSatocut,scores=F)
+
+
+ 
+> CStarout<-Cstar(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> CStarcut<-cutoff(CStarout,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> CStarflag<-flagged.resp(CStarout,cutoff.obj=CStarcut,scores=F)
+
+
+ 
+> U3out<-U3(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> U3cut<-cutoff(U3out,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> U3flag<-flagged.resp(U3out,cutoff.obj=U3cut,scores=F)
+
+
+ 
+> ZU3out<-ZU3(yanıtlarikili,NA.method = "Pairwise", Save.MatImp = FALSE,
+	IP = NULL, IRT.PModel = "2PL", Ability = NULL, Ability.PModel = "ML")
+> ZU3cut<-cutoff(ZU3out,ModelFit = "NonParametric", Nreps=1000,
+		IP=x$IP, IRT.PModel=x$IRT.PModel, Ability=x$Ability,
+		Ability.PModel=x$Ability.PModel, mu=0, sigma=1,
+		Blvl = 0.05, Breps = 10000)
+> ZU3flag<-flagged.resp(ZU3out,cutoff.obj=ZU3cut,scores=F)
+
+
+ 
+> library(PsyControl)
+> CUSUMout<-cusum(dat=yanıtlarikili)
+> CUSUMcut<-cusum.cutoff(CUSUMout,upp=.975,low=.025,Breps=1000)
+> CUSUMflag<-cusum.flag(CUSUMout,CUSUMcut)
+ 
+
+
+ 
+> Acıktı<-Aflag$PFSscores[,1]
+> Dcıktı<-Dflag$PFSscores[,1]
+> Ecıktı<-Eflag$PFSscores[,1]
+> Gcıktı<-Gflag$PFSscores[,1]
+> Htcıktı<-Htflag$PFSscores[,1]
+> lzcıktı<-lzflag$PFSscores[,1]
+> lzstarcıktı<-lzstarflag$PFSscores[,1]
+> NCIcıktı<-NCIflag$PFSscores[,1]
+> PBScıktı<-PBSflag$PFSscores[,1]
+> CSatocıktı<-CSatoflag$PFSscores[,1]
+> CStarcıktı<-CStarflag$PFSscores[,1]
+> U3cıktı<-U3flag$PFSscores[,1]
+> ZU3cıktı<-ZU3flag$PFSscores[,1]
+> 
+> 
+> kopyacılar<-c(2,3,4,5,11,103,104,141,149,191,219,226,248,251,271,292,415,452,453,478,494,498,505,
+				524,623,624,639,645,687,892,903,919,921,923,983,1176,1267,1307,1356,1358,1413,1426,
+				1432,1450,1585,1620)
+ 
+ 
+> length(Acıktı)
+> intersect(Acıktı,kopyacılar)
+> length(Dcıktı)
+> intersect(Dcıktı,kopyacılar)
+> length(Ecıktı)
+> intersect(Ecıktı,kopyacılar)
+> length(Gcıktı)
+> intersect(Gcıktı,kopyacılar)
+> length(Htcıktı)
+> intersect(Htcıktı,kopyacılar)
+> length(lzcıktı)
+> intersect(lzcıktı,kopyacılar)
+> length(lzstarcıktı)
+> intersect(lzstarcıktı,kopyacılar)
+> length(NCIcıktı)
+> intersect(NCIcıktı,kopyacılar)
+> length(PBScıktı)
+> intersect(PBScıktı,kopyacılar)
+> length(CSatocıktı)
+> intersect(CSatocıktı,kopyacılar)
+> length(CStarcıktı)
+> intersect(CStarcıktı,kopyacılar)
+> length(U3cıktı)
+> intersect(U3cıktı,kopyacılar)
+> length(ZU3cıktı)
+> intersect(ZU3cıktı,kopyacılar)
+
+ 
+> library(PsyControl)
+> CUSUMout<-cusum(dat=y,IRTmodel="2PL")
+> CUSUMcut<-cusum.cutoff(CUSUMout,upp=.975,low=.025,Breps=1000)
+> CUSUMflag<-cusum.flag(CUSUMout,CUSUMcut)
+> 
+> 
+> 
+> Acıktı<-Aflag$PFSscores[,1]
+> Dcıktı<-Dflag$PFSscores[,1]
+> Ecıktı<-Eflag$PFSscores[,1]
+> Gcıktı<-Gflag$PFSscores[,1]
+> Htcıktı<-Htflag$PFSscores[,1]
+> lzcıktı<-lzflag$PFSscores[,1]
+> lzstarcıktı<-lzstarflag$PFSscores[,1]
+> NCIcıktı<-NCIflag$PFSscores[,1]
+> PBScıktı<-PBSflag$PFSscores[,1]
+> CSatocıktı<-CSatoflag$PFSscores[,1]
+> CStarcıktı<-CStarflag$PFSscores[,1]
+> U3cıktı<-U3flag$PFSscores[,1]
+> ZU3cıktı<-ZU3flag$PFSscores[,1]
+
+
+
+> length(Acıktı)
+[1] 87
+> intersect(Acıktı,kopyacılar)
+[1]  2  3  4  5 11
+> length(Dcıktı)
+[1] 90
+> intersect(Dcıktı,kopyacılar)
+[1]   4 251
+> length(Ecıktı)
+[1] 78
+> intersect(Ecıktı,kopyacılar)
+[1]  2  3  4  5 11
+> length(Gcıktı)
+[1] 73
+> intersect(Gcıktı,kopyacılar)
+[1]  2  3  4  5 11
+> length(Htcıktı)
+[1] 109
+> intersect(Htcıktı,kopyacılar)
+[1]   2   3   4 251
+> length(lzcıktı)
+[1] 143
+> intersect(lzcıktı,kopyacılar)
+[1]  2  3  4  5 11
+> length(lzstarcıktı)
+[1] 129
+> intersect(lzstarcıktı,kopyacılar)
+[1]   3   4   5 919
+> length(NCIcıktı)
+[1] 75
+> intersect(NCIcıktı,kopyacılar)
+[1]  2  3  4  5 11
+> length(PBScıktı)
+[1] 85
+> intersect(PBScıktı,kopyacılar)
+[1]   2   3   4   5 251
+> length(CSatocıktı)
+[1] 87
+> intersect(CSatocıktı,kopyacılar)
+[1]   2   3   4   5 251
+> length(CStarcıktı)
+[1] 72
+> intersect(CStarcıktı,kopyacılar)
+[1] 251
+> length(U3cıktı)
+[1] 101
+> intersect(U3cıktı,kopyacılar)
+[1]   2   3   4   5 251
+> length(ZU3cıktı)
+[1] 81
+> intersect(ZU3cıktı,kopyacılar)
+[1]  2  3  4  5 11
+
+
+
+> CUSUMflag  
+
+CUSUMcıktı<-c(1,5,9,12,14,17,28,39,49,77,80,107,108,122,126,129,154,175,200,213,
+				245,251,328,337,339,345,371,410,412,419,423,439,502,518,525,624,655,704,
+				724,746,977,1027,1032,1084,1138,1148,1171,1192,1193,1214,1265,1346,1496,1633)
+
+> length(CUSUMcıktı)
+[1] 54
+> intersect(CUSUMcıktı,kopyacılar)
+[1]   5 251 624
+
+
+				
+				
