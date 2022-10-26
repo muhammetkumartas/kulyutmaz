@@ -1,0 +1,22 @@
+
+
+# ROpen 4.0.2 ile oluştur, Rcpp ilintisi... 
+
+
+
+
+yanıtlar<-read.table("Yanıtlarikili.txt",heder=TRUE)
+demografik<-read.table("demografik.txt",header=TRUE)
+
+demografik[,2:8]<-NULL
+demografik<-[,3]<-NULL
+
+veri<-cbind(demografik,yanıtlar)
+
+kopyacılar<-c(e100002, e100003, e100004, e100005, e100011, e100103, e100104, e100141, e100149, e100191, e100219, 
+				e100226, e100248, e100251, e100271, e100292, e100415, e100452, e100453, e100478, 
+				e100494, e100498, e100505, e100524, e100623, e100624, e100639, e100645, e100687, 
+				e100892, e100903, e100919, e100921, e100923, e100983, e101176, e101267, e101307, 
+				e101356, e101358, e101413, e101426, e101432, e101450, e101585, e101620)
+				
+				

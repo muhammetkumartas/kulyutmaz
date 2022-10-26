@@ -1,0 +1,353 @@
+classifier = svm(x=veriseti[-82],
+y=veriseti$flagged,
+kernel.type="radial", degree=3, gamma=1/dim(veriseti[-82])[2],
+coef0=0, cost=1, nu=0.5, cachesize=40, tolerance=0.001, epsilon=0.5,
+shrinking=TRUE)
+ y_pred = predict(classifier, newdata = testset[-82])
+ cm = table(testset$flagged, y_pred)
+ cm
+
+
+
+SVM
+
+
+
+> yanıtlar<-read.table("yanıtlarikili.txt",header=T)
+> rt<-read.table("RT.txt",header=T)
+> demografik<-read.table("demografik.txt",header=T)
+> tsüre<-demografik[,10]
+> deneme<-read.table("deneme.txt",header=T)
+> hız<-read.table("hız.txt",header=T)
+> yetenek<-read.table("yetenek.txt",header=T)
+> akb<-read.table("AKB.txt",header=T)
+> dkb<-read.table("DKB.txt",header=T)
+> ekb<-read.table("EKB.txt",header=T)
+> g<-read.table("G.txt",header=T)
+> ht<-read.table("Ht.txt",header=T)
+> lz<-read.table("lz.txt",header=T)
+> lzs<-read.table("lzstar.txt",header=T)
+> ncı<-read.table("NCI.txt",header=T)
+> pbs<-read.table("PBS.txt",header=T)
+> csato<-read.table("CSato.txt",header=T)
+> cstar<-read.table("CStar.txt",header=T)
+> u3<-read.table("U3.txt",header=T)
+> zu3<-read.table("ZU3.txt",header=T)
+> lt<-read.table("ChiRT.txt",header=T)
+> flagged<-demografik[,3]
+> 
+> 
+> veri<-cbind(yanıtlar,rt)
+> veri<-cbind(veri,tsüre)
+> veri<-cbind(veri,deneme)
+> veri<-cbind(veri,hız)
+> veri<-cbind(veri,yetenek)
+> veri<-cbind(veri,akb)
+> veri<-cbind(veri,dkb)
+> veri<-cbind(veri,ekb)
+> veri<-cbind(veri,g)
+> veri<-cbind(veri,ht)
+> veri<-cbind(veri,lz)
+> veri<-cbind(veri,lzs)
+> veri<-cbind(veri,ncı)
+> veri<-cbind(veri,pbs)
+> veri<-cbind(veri,csato)
+> veri<-cbind(veri,cstar)
+> veri<-cbind(veri,u3)
+> veri<-cbind(veri,zu3)
+> veri<-cbind(veri,lt)
+> veri<-cbind(veri,flagged)
+> 
+> d1<-yanıtlar[,157]
+> d2<-yanıtlar[,152]
+> d3<-yanıtlar[,153]
+> d4<-yanıtlar[,23]
+> d5<-yanıtlar[,90]
+> d6<-yanıtlar[,57]
+> d7<-yanıtlar[,62]
+> d8<-yanıtlar[,117]
+> d9<-yanıtlar[,60]
+> d10<-rt[,81]
+> d11<-rt[,77]
+> d12<-rt[,15]
+> d13<-rt[,88]
+> d16<-rt[,166]
+> d14<-rt[,162]
+> d15<-rt[,59]
+> d17<-rt[,36]
+> d18<-rt[,30]
+> d19<-rt[,111]
+> d20<-rt[,163]
+> d21<-rt[,128]
+> d22<-rt[,114]
+> d23<-rt[,146]
+> d24<-rt[,67]
+> d25<-rt[,110]
+> d26<-rt[,26]
+> d27<-rt[,155]
+> d28<-rt[,22]
+> d29<-rt[,12]
+> d30<-rt[,37]
+> d31<-rt[,41]
+> d32<-rt[,6]
+> d33<-rt[,142]
+> d34<-rt[,18]
+> d35<-rt[,148]
+> d36<-rt[,126]
+> d37<-rt[,157]
+> d38<-rt[,45]
+> d39<-rt[,93]
+> d40<-rt[,54]
+> d41<-rt[,3]
+> d42<-rt[,35]
+> d43<-rt[,66]
+> d44<-rt[,71]
+> d45<-rt[,5]
+> d46<-rt[,122]
+> d47<-rt[,21]
+> d48<-rt[,138]
+> d49<-rt[,57]
+> d50<-rt[,19]
+> d51<-rt[,85]
+> d52<-rt[,170]
+> d53<-rt[,16]
+> d54<-rt[,82]
+> d55<-rt[,135]
+> d56<-rt[,153]
+> d57<-rt[,69]
+> d58<-rt[,102]
+> d59<-rt[,159]
+> d60<-rt[,108]
+> d61<-rt[,149]
+> d62<-rt[,107]
+> d63<-rt[,73]
+> d64<-rt[,130]
+> 
+> veri<-edit(veri)
+> 
+> veriseti<-cbind(d1,d2)
+> veriseti<-cbind(veriseti,d3)
+> veriseti<-cbind(veriseti,d4)
+> veriseti<-cbind(veriseti,d5)
+> veriseti<-cbind(veriseti,d6)
+> veriseti<-cbind(veriseti,d7)
+> veriseti<-cbind(veriseti,d8)
+> veriseti<-cbind(veriseti,d9)
+> veriseti<-cbind(veriseti,d10)
+> veriseti<-cbind(veriseti,d11)
+> veriseti<-cbind(veriseti,d12)
+> veriseti<-cbind(veriseti,d13)
+> veriseti<-cbind(veriseti,d14)
+> veriseti<-cbind(veriseti,d15)
+> veriseti<-cbind(veriseti,d16)
+> veriseti<-cbind(veriseti,d17)
+> veriseti<-cbind(veriseti,d18)
+> veriseti<-cbind(veriseti,d19)
+> veriseti<-cbind(veriseti,d20)
+> veriseti<-cbind(veriseti,d21)
+> veriseti<-cbind(veriseti,d22)
+> veriseti<-cbind(veriseti,d23)
+> veriseti<-cbind(veriseti,d24)
+> veriseti<-cbind(veriseti,d25)
+> veriseti<-cbind(veriseti,d26)
+> veriseti<-cbind(veriseti,d27)
+> veriseti<-cbind(veriseti,d28)
+> veriseti<-cbind(veriseti,d29)
+> veriseti<-cbind(veriseti,d30)
+> veriseti<-cbind(veriseti,d31)
+> veriseti<-cbind(veriseti,d32)
+> veriseti<-cbind(veriseti,d33)
+> veriseti<-cbind(veriseti,d34)
+> veriseti<-cbind(veriseti,d35)
+> veriseti<-cbind(veriseti,d36)
+> veriseti<-cbind(veriseti,d37)
+> veriseti<-cbind(veriseti,d38)
+> veriseti<-cbind(veriseti,d39)
+> veriseti<-cbind(veriseti,d40)
+> veriseti<-cbind(veriseti,d41)
+> veriseti<-cbind(veriseti,d42)
+> veriseti<-cbind(veriseti,d43)
+> veriseti<-cbind(veriseti,d44)
+> veriseti<-cbind(veriseti,d45)
+> veriseti<-cbind(veriseti,d46)
+> veriseti<-cbind(veriseti,d47)
+> veriseti<-cbind(veriseti,d48)
+> veriseti<-cbind(veriseti,d49)
+> veriseti<-cbind(veriseti,d50)
+> veriseti<-cbind(veriseti,d51)
+> veriseti<-cbind(veriseti,d52)
+> veriseti<-cbind(veriseti,d53)
+> veriseti<-cbind(veriseti,d54)
+> veriseti<-cbind(veriseti,d55)
+> veriseti<-cbind(veriseti,d56)
+> veriseti<-cbind(veriseti,d57)
+> veriseti<-cbind(veriseti,d58)
+> veriseti<-cbind(veriseti,d59)
+> veriseti<-cbind(veriseti,d60)
+> veriseti<-cbind(veriseti,d61)
+> veriseti<-cbind(veriseti,d62)
+> veriseti<-cbind(veriseti,d63)
+> veriseti<-cbind(veriseti,d64)
+> veriseti<-cbind(veriseti,hız)
+> veriseti<-cbind(veriseti,tsüre)
+> veriseti<-cbind(veriseti,akb)
+> veriseti<-cbind(veriseti,zu3)
+> veriseti<-cbind(veriseti,ekb)
+> veriseti<-cbind(veriseti,lt)
+> veriseti<-cbind(veriseti,yetenek)
+> veriseti<-cbind(veriseti,lzs)
+> veriseti<-cbind(veriseti,pbs)
+> veriseti<-cbind(veriseti,csato)
+> veriseti<-cbind(veriseti,ncı)
+> veriseti<-cbind(veriseti,g)
+> veriseti<-cbind(veriseti,u3)
+> veriseti<-cbind(veriseti,lz)
+> veriseti<-cbind(veriseti,dkb)
+> veriseti<-cbind(veriseti,deneme)
+> veriseti<-cbind(veriseti,ht)
+> veriseti<-cbind(veriseti,flagged)
+> 
+> veriseti<-edit(veriseti)
+> ncol(veriseti)
+[1] 82
+> ölcekleme<-function(x,na.rm=T){
++ return((x-min(x))/(max(x)-min(x)))
++ }
+> veriseti$flagged = factor(veriseti$flagged, levels = c(0, 1))
+> veriseti[-82]<-ölcekleme(veriseti[-82])
+> library(caTools)
+> set.seed(123)
+> split = sample.split(veriseti$flagged, SplitRatio = 0.70)
+> egitimset = subset(veriseti, split == TRUE)
+> testset = subset(veriseti, split == FALSE)
+> egitimset<-edit(egitimset)
+> classifier = svm(formula = flagged ~ .,
++ data = egitimset,
++ type = 'C-classification',
++ kernel = 'polynomial')
+Error in svm(formula = flagged ~ ., data = egitimset, type = "C-classification",  : 
+  "svm" fonksiyonu bulunamadı
+> library(e1071)
+> classifier = svm(formula = flagged ~ .,
++ data = egitimset,
++ type = 'C-classification',
++ kernel = 'polynomial')
+> y_pred = predict(classifier, newdata = testset[-82])
+> cm = table(testset[, 82], y_pred)
+> cm
+   y_pred
+      0   1
+  0 477   0
+  1  13   1
+> classifier = svm(veriseti[-82],veriseti[,82],kernel.type="radial", degree=3, gamma=1/dim(x)[2],
++ coef0=0, cost=1, nu=0.5, cachesize=40, tolerance=0.001, epsilon=0.5,
++ shrinking=TRUE)
+Error in svm.default(veriseti[-82], veriseti[, 82], kernel.type = "radial",  : 
+  'x' nesnesi bulunamadı
+> classifier = svm(veriseti[-82],veriseti[,82],kernel.type="radial", degree=3, gamma=1/dim(veriseti([-82])[2],
+Hata: beklenmeyen durum, '[' in "classifier = svm(veriseti[-82],veriseti[,82],kernel.type="radial", degree=3, gamma=1/dim(veriseti(["
+> classifier = svm(veriseti[-82],veriseti[,82],kernel.type="radial", degree=3, gamma=1/dim(veriseti[-82])[2],
++ coef0=0, cost=1, nu=0.5, cachesize=40, tolerance=0.001, epsilon=0.5,
++ shrinking=TRUE)
+> y_pred = predict(classifier, newdata = testset[-82])
+> y_pred = predict(classifier, newdata = veriseti[-82])
+> cm = table(veriseti[, 82], y_pred)
+> cm
+   y_pred
+       0    1
+  0 1590    0
+  1   31   15
+> 15/46*100
+[1] 32.6087
+> summary (svm.obj)
+Error in summary(svm.obj) : 'svm.obj' nesnesi bulunamadı
+> classifier = svm(veriseti[-82],veriseti[,82],kernel.type="polynomial", degree=3, gamma=1/dim(veriseti[-82])[2],
++ coef0=0, cost=1, nu=0.5, cachesize=40, tolerance=0.001, epsilon=0.5,
++ shrinking=TRUE)
+> y_pred = predict(classifier, newdata = veriseti[-82])
+> cm = table(veriseti[, 82], y_pred)
+> cm
+   y_pred
+       0    1
+  0 1590    0
+  1   31   15
+> classifier = svm(veriseti[-82],veriseti[,82],kernel.type="radial", degree=3, gamma=1/dim(veriseti[-82])[2],
++ coef0=0, cost=1, nu=0.5, cachesize=40, tolerance=0.01, epsilon=0.5,
++ shrinking=TRUE)
+> y_pred = predict(classifier, newdata = veriseti[-82])
+> cm = table(veriseti[, 82], y_pred)
+> cm
+   y_pred
+       0    1
+  0 1590    0
+  1   31   15
+> pred <- predict (classifier, veriseti[-82])
+> all.equal (pred, veriseti[,82])
+[1] "names for target but not for current" "31 string mismatches"                
+> all.equal (pred, veriseti$flagged)
+[1] "names for target but not for current" "31 string mismatches"                
+> 20/46*100
+[1] 43.47826
+> 15/46*100
+[1] 32.6087
+> 18/46*100
+[1] 39.13043
+> 19/46*100
+[1] 41.30435
+> 
+> 
+> install.packages("SwarmSVM")
+Installing package into ‘C:/Users/MUHAMMET/Documents/R/win-library/4.0’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘BBmisc’
+
+URL 'https://mran.microsoft.com/snapshot/2020-07-16/bin/windows/contrib/4.0/BBmisc_1.11.zip' deneniyor
+Content type 'application/zip' length 322894 bytes (315 KB)
+downloaded 315 KB
+
+URL 'https://mran.microsoft.com/snapshot/2020-07-16/bin/windows/contrib/4.0/SwarmSVM_0.1-6.zip' deneniyor
+Content type 'application/zip' length 712035 bytes (695 KB)
+downloaded 695 KB
+
+package ‘BBmisc’ successfully unpacked and MD5 sums checked
+package ‘SwarmSVM’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\MUHAMMET\AppData\Local\Temp\Rtmpm8e4pd\downloaded_packages
+> library(SwarmSVM)
+> library(kernlab)
+> svm<-clusterSVM(veriseti[-82],veriseti[,82],2,cluster.method  =  "kkmeans")
+Error in clusterSVM(veriseti[-82], veriseti[, 82], 2, cluster.method = "kkmeans") : 
+  Unknow cluster.method.
+> svm<-clusterSVM(veriseti[-82],veriseti[,82],2,cluster.method  =  "kernlab::kkmeans")
+Error in clusterSVM(veriseti[-82], veriseti[, 82], 2, cluster.method = "kernlab::kkmeans") : 
+  Unknow cluster.method.
+> svm<-clusterSVM(veriseti[-82],veriseti[,82],2,cluster.method  =  "stats::kmeans")
+Error in clusterSVM(veriseti[-82], veriseti[, 82], 2, cluster.method = "stats::kmeans") : 
+  Unknow cluster.method.
+> svm<-clusterSVM(veriseti[-82],veriseti[,82],2)
+Time for Clustering: 0.0199999999999818 secs
+Time for Transforming: 0.110000000000127 secs
+Time for Liblinear: 0.119999999999891 secs
+
+Total Time: 0.25 secs
+
+> y_pred = predict(svm, newdata = veriseti[-82])
+> cm = table(veriseti[, 82], y_pred)
+Error in table(veriseti[, 82], y_pred) : 
+  all arguments must have the same length
+> pred = predict(svm, veriseti[,-82])
+> csvm.pred = svm$valid.pred
+> csvm.pred 
+NULL
+> cm = table(veriseti[, 82], y_pred)
+
+
+
+
+> som_model <- som(egitimset,
++ grid=som_grid, 
++         rlen=100, 
++         alpha=c(0.05,0.01), 
++         keep.data = TRUE,
++         n.hood="circular" )

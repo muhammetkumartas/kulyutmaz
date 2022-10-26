@@ -1,0 +1,108 @@
+library(rfUtilities) 
+library(sp) 
+data(meuse) 
+meuse <- na.omit(meuse) 
+n = 6 
+clust.meuse <- rf.unsupervised(veriseti[,-82], n=2, proximity = TRUE, silhouettes = TRUE) 
+( meuse$k <- clust.meuse$k ) 
+mds <- stats:::cmdscale(clust.meuse$distances, eig=TRUE, k=n) 
+colnames(mds$points) <- paste('Dim', 1:n) 
+mds.col <- ifelse(clust.meuse$k == 1, rainbow(6)[1], ifelse(clust.meuse$k == 2, 
+			rainbow(6)[2], ifelse(clust.meuse$k == 3, rainbow(6)[3], 
+			ifelse(clust.meuse$k == 4, rainbow(6)[4], 
+			ifelse(clust.meuse$k == 5, rainbow(6)[5], 
+			ifelse(clust.meuse$k == 6, rainbow(6)[6], NA)))))) 
+plot(mds$points[,1:2],col=mds.col, pch=20) 
+pairs(mds$points, col=mds.col, pch=20) 
+coordinates(meuse) <- ~x+y 
+plot(meuse, col=mds.col, pch=19) 
+box() 
+
+
+
+> d1<-verii[,341]
+> d2<-verii[,346]
+> d3<-idur[,2]
+> d4<-idur[,4]
+> d5<-idur[,6:10]
+> d6<-idur[,12:22]
+> d7<-idur[,24]
+> d8<-idur[,26:28]
+> d9<-idur[,30:31]
+> d10<-idur[,33:34]
+> d11<-idur[,37:43]
+> d12<-idur[,46:48]
+> d13<-idur[,52]
+> d14<-idur[,56]
+> d15<-idur[,58:59]
+> d16<-idur[,64:68]
+> d17<-idur[,70]
+> d18<-idur[,72]
+> d19<-idur[,76:78]
+> d20<-idur[,81:83]
+> d21<-idur[,85:89]
+> d22<-idur[,91:92]
+> d23<-idur[,96:100]
+> d24<-idur[,102:103]
+> d25<-idur[,105:108]
+> d26<-idur[,110]
+> d27<-idur[,113:114]
+> d28<-idur[,116:117]
+> d29<-idur[,121:123]
+> d30<-idur[,126:128]
+> d31<-idur[,132]
+> d32<-idur[,135]
+> d33<-idur[,136:141]
+> d34<-idur[,145]
+> d35<-idur[,149:152]
+> d36<-idur[,154]
+> d37<-idur[,158:163]
+> d38<-idur[,165:166]
+> d39<-idur[,168:170]
+> d40<-iraw[,32]
+> d41<-iraw[,57]
+
+
+
+
+> yeni<-cbind(d1,d2)
+> yeni<-cbind(yeni,d3)
+> yeni<-cbind(yeni,d4)
+> yeni<-cbind(yeni,d5)
+> yeni<-cbind(yeni,d6)
+> yeni<-cbind(yeni,d7)
+> yeni<-cbind(yeni,d8)
+> yeni<-cbind(yeni,d9)
+> yeni<-cbind(yeni,d10)
+> yeni<-cbind(yeni,d11)
+> yeni<-cbind(yeni,d12)
+> yeni<-cbind(yeni,d13)
+> yeni<-cbind(yeni,d14)
+> yeni<-cbind(yeni,d15)
+> yeni<-cbind(yeni,d16)
+> yeni<-cbind(yeni,d17)
+> yeni<-cbind(yeni,d18)
+> yeni<-cbind(yeni,d19)
+> yeni<-cbind(yeni,d20)
+> yeni<-cbind(yeni,d21)
+> yeni<-cbind(yeni,d22)
+> yeni<-cbind(yeni,d23)
+> yeni<-cbind(yeni,d24)
+> yeni<-cbind(yeni,d25)
+> yeni<-cbind(yeni,d26)
+> yeni<-cbind(yeni,d27)
+> yeni<-cbind(yeni,d28)
+> yeni<-cbind(yeni,d29)
+> yeni<-cbind(yeni,d30)
+> yeni<-cbind(yeni,d31)
+> yeni<-cbind(yeni,d32)
+> yeni<-cbind(yeni,d33)
+> yeni<-cbind(yeni,d34)
+> yeni<-cbind(yeni,d35)
+> yeni<-cbind(yeni,d36)
+> yeni<-cbind(yeni,d37)
+> yeni<-cbind(yeni,d38)
+> yeni<-cbind(yeni,d39)
+> yeni<-cbind(yeni,d40)
+> yeni<-cbind(yeni,d41)
+> yeni<-cbind(yeni,verii[,348])

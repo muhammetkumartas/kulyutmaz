@@ -1,0 +1,180 @@
+> yanıtlar<-read.table("yanıtlarikili.txt",header=T)
+> rt<-read.table("RT.txt",header=T)
+> demografik<-read.table("demografik.txt",header=T)
+> tsüre<-demografik[,10]
+> deneme<-read.table("deneme.txt",header=T)
+> hız<-read.table("hız.txt",header=T)
+> yetenek<-read.table("yetenek.txt",header=T)
+> akb<-read.table("AKB.txt",header=T)
+> dkb<-read.table("DKB.txt",header=T)
+> ekb<-read.table("EKB.txt",header=T)
+> g<-read.table("G.txt",header=T)
+> ht<-read.table("Ht.txt",header=T)
+> lz<-read.table("lz.txt",header=T)
+> lzs<-read.table("lzstar.txt",header=T)
+> ncı<-read.table("NCI.txt",header=T)
+> pbs<-read.table("PBS.txt",header=T)
+> csato<-read.table("CSato.txt",header=T)
+> cstar<-read.table("CStar.txt",header=T)
+> u3<-read.table("U3.txt",header=T)
+> zu3<-read.table("ZU3.txt",header=T)
+> lt<-read.table("ChiRT.txt",header=T)
+> flagged<-demografik[,3]
+> basari<-read.table("basari.txt",header=T)
+> charteksi<-read.table("charteksi.txt",header=T)
+> chartartı<-read.table("chartartı.txt",header=T)
+> p<-read.table("p.txt",header=T)
+> ceksi<-read.table("ceksi.txt",header=T)
+> cartı<-read.table("cartı.txt",header=T)
+> deneme<-read.table("deneme.txt",header=T)
+> 
+> 
+> overi<-cbind(yanıtlar,rt)
+> overi<-cbind(overi,tsüre) 
+> overi<-cbind(overi,basari)
+> overi<-cbind(overi,hız)
+> overi<-cbind(overi,yetenek)
+> 
+> overi<-edit(overi)
+> overi<-cbind(overi,lz)
+> overi<-cbind(overi,zu3)
+> overi<-cbind(overi,charteksi)
+> overi<-edit(overi)
+> overi<-cbind(overi,chartartı)
+> overi<-cbind(overi,p)
+> overi<-edit(overi)
+> overi<-cbind(overi,ceksi)
+> overi<-edit(overi)
+> overi<-cbind(overi,cartı)
+> overi<-edit(overi)
+> overi<-cbind(overi,lt)
+> overi<-cbind(overi,flagged)
+> overi<-edit(overi)
+> ncol(overi)
+[1] 860
+> 
+> ölcekleme<-function(x,na.rm=T){
++     return((x-min(x))/(max(x)-min(x)))
++ }
+> 
+> 
+> library(caret)
+> overi$flagged = factor(overi$flagged, levels = c(0, 1))
+> overi[-860]<-ölcekleme(overi[-860])
+> control <- rfeControl(functions=rfFuncs, method="cv", number=2)
+> results <- rfe(overi[,1:859], overi$flagged, sizes=c(1:859), rfeControl=control)
+> predictors(results)
+[1] "hız"        "tsüre"      "idur.15"    "Item.167.1" "idur.81"    "idur.88"    "lt"         "idur.163"   "idur.77"   
+
+> 
+> 
+> d1<-rt[,15]
+> d2<-rt[,81]
+> d3<-rt[,88]
+> d4<-rt[,163]
+> d5<-rt[,77]
+> d6<-chartartı[,167]
+> veri<-cbind(d1,d2)
+>  veri<-cbind(veri,d3)
+>  veri<-cbind(veri,d4)
+> veri<-cbind(veri,d5)
+> veri<-cbind(veri,d6)
+> veri<-cbind(veri,hız)
+> veri<-cbind(veri,tsüre)
+> veri<-cbind(veri,lt)
+> veri<-cbind(veri,flagged)
+> veri<-edit(veri)
+>  ncol(veri)
+[1] 10
+> ölcekleme<-function(x,na.rm=T){
++ return((x-min(x))/(max(x)-min(x)))
++ }
+> veri$flagged = factor(veri$flagged, levels = c(0, 1))
+> veri[-10]<-ölcekleme(veri[-10])
+> library(caTools)
+> set.seed(123)
+> split = sample.split(veri$flagged, SplitRatio = 0.70)
+> egitimset = subset(veri, split == TRUE)
+> testset = subset(veri, split == FALSE)
+> 
+> library(randomForest)
+randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: ‘randomForest’
+
+The following object is masked from ‘package:ggplot2’:
+
+    margin
+
+> classifier = randomForest(x = egitimset[-10],
++ y = egitimset$flagged,
++ ntree = 1000)
+> y_pred = predict(classifier, newdata = testset[-10])
+> cm = table(testset[, 10], y_pred)
+> cm
+   y_pred
+      0   1
+  0 475   2
+  1   7   7
+
+> library(e1071)
+> classifier = naiveBayes(x = egitimset[-10],
++ y = egitimset$flagged)
+> y_pred = predict(classifier, newdata = testset[-10])
+> cm = table(testset[, 10], y_pred)
+> cm
+   y_pred
+      0   1
+  0 461  16
+  1   6   8
+
+> library(class)
+> y_pred = knn(train = egitimset[,-10],
++ test = testset[,-10],
++ cl = egitimset[,10],
++ k = 5)
+> cm = table(testset[, 10], y_pred)
+> cm
+   y_pred
+      0   1
+  0 476   1
+  1   9   5
+> library(cluster)
+> library(factoextra)
+> 
+> distance<-get_dist(veri[,1:9])
+> k<-kmeans(distance,2,nstart=25)
+> cm=table(veri$flagged,k$cluster)
+> cm
+   
+       1    2
+  0  397 1193
+  1   21   25
+
+> library(ClusterR)
+
+> veri<-veri[,-10]
+> veri<-center_scale(veri, mean_center = TRUE, sd_scale = TRUE)
+> gmm = GMM(veri,2 , "eucl_dist", "random_spread", 100000, 50000)
+> pr = predict_GMM(veri, gmm$centroids, gmm$covariance_matrices, gmm$weights)
+> cm = table(flagged, pr$cluster_labels)
+> cm
+       
+flagged    0    1
+      0  379 1211
+      1   24   22
+> library(cluster)
+> library(factoextra)
+> library(tidyverse)
+> library(randomForest)
+> rf.fit <- randomForest(x = veri, y = NULL, ntree = 10000, proximity = TRUE, oob.prox = TRUE)
+> hclust.rf <- hclust(as.dist(1-rf.fit$proximity), method = "average")
+> rf.cluster = cutree(hclust.rf, k=2)
+> veriseti.pc <- prcomp(veri, center = FALSE, scale. = FALSE)$x %>% as.data.frame()
+> veriseti.pc$rf.clusters <- rf.cluster
+> table(rf.cluster,flagged)
+          flagged
+rf.cluster   0   1
+         1  441  23
+         2 1149  23
